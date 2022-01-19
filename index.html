@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="components/change-color.js"></script>
+    <script src="components/transparent-material.js"></script>
+  </head>
+
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-assets-item 
+          id="sky"
+          src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/sky.jpg?v=1642162847035"             
+        ></a-assets-item>
+        <a-assets-item
+          id="metal-mesh-normal"
+          src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/normalmap3.jpg?v=1642171575185"
+        ></a-assets-item>
+        <a-assets-item
+          id="metal-mesh-base"
+          src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/basecolor3.jpg?v=1642171571516"
+        ></a-assets-item>
+        <a-assets-item
+          id="metal-mesh-alpha"
+          src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/opacitymap3.jpg?v=1642171575704"
+        ></a-assets-item>
+      </a-assets>
+
+      <a-entity light="type: ambient; intensity: 0.7;"> </a-entity>
+      <a-entity
+        light="type: directional; castShadow: true; intensity: 0.8;"
+        position="-5 3 1.5"
+      ></a-entity>
+      <a-sky
+        src="#sky"
+      ></a-sky>
+      <a-box
+        change-color
+        id="box"
+        position="-3 1 0"
+        shadow="cast: true"
+        animation="property: position; from: -3 1 0; to: -3 3 0; dir: alternate; loop: true; dur: 10000; easing: easeInOutQuad"
+      ></a-box>
+      <a-sphere
+        position="0 1.25 -5"
+        shadow="cast: true"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"
+        radius="1.25"
+        src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/basecolor2.jpg?v=1642166316671"
+        repeat="4 3"
+        normal-map="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/normalmap2.jpg?v=1642166314747"
+        normal-texture-repeat="4 3"
+        metalness="0.5"
+      ></a-sphere>
+      <a-gltf-model
+        animation-mixer="timeScale: 0.2"
+        shadow="cast: true"
+        src="https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/scene.gltf?v=1642167882573"
+      ></a-gltf-model>
+      <a-entity
+        geometry="primitive: plane"
+        material="src: https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/basecolor.jpg?v=1642166343164; repeat: 2 2; normal-map: https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/normalmap.jpg?v=1642166343611; normal-texture-repeat: 2 2; displacementMap: https://cdn.glitch.global/76dc42f6-6d48-46a1-a22a-976d22a2c939/heightmap.png?v=1642166343938; displacementTextureRepeat: 2 2; displacementScale: 2"
+        shadow="recieve: true"
+        scale="12 12"
+        position="10 -3 -5"
+        rotation="0 -75 0"
+      ></a-entity>
+      <a-entity
+        shadow="cast: true"
+        geometry="primitive: plane; width: 8; height: 8;"
+        transparent-material="base: #metal-mesh-base; normal: #metal-mesh-normal; alpha: #metal-mesh-alpha; metalness: 0.7; roughness: 0.7"
+        position="-3 0 -8"
+        rotation="0 180 0"
+      ></a-entity>
+      
+    </a-scene>
+  </body>
+</html>
